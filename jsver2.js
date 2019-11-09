@@ -1,4 +1,6 @@
 /*
+  !!! This table allocator assumes tables are arranged as snake biscuit(s shape) !!!
+  
   Can change how many tables in a row / column (numberOfRowsInPlan / numberOfColsInPlan)
   
   Cannot change how many rows / columns in a table (numberOfRowsInTable / numberOfColsInTable), fixed at 11 & 12
@@ -6,18 +8,9 @@
   making of indexs:
         //indexOfTableIDvsHKCECplan: Remember tables are arranged as snake biscuit(s shape): for 3x7= 21 tables, 8th table is under 7th table, not under 1st table (number of items in index = How many Tables are there)
         
-        //indexOfrowvsHKCErow: simplest, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = number of global rows)
+        //indexOfrowvsHKCErow: simple, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = number of global rows)
         
-        //indexOfcolvsHKCEcol: 1.Remember tables are arranged as snake biscuit(s shape) 
-                               2. A = 1st item / B = 2nd item / C = 12th item / D = 13th item / E = 14th item / F = last item (i.e. 24th)
-                               
-                               ABo  ooo  ooo  ooC
-                               ABo  ooo  ooo  ooC
-                               ABo  ooo  ooo  ooC
-                               
-                               ooF  ooo  ooo  DEo
-                               ooF  ooo  ooo  DEo
-                               ooF  ooo  ooo  DEo   (number of items in index = number of global columns X how many tables in a column)
+        //indexOfcolvsHKCEcol: simple, just [1 - the last one] (number of items in index = number of global column)
                                
                                
 */
