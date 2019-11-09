@@ -16,6 +16,9 @@
 2. Can add a new line anywhere in the list, and seat will relocate accordingly.
 
 
+**Save the List / Paste it back later = save / load**
+
+
 3. Click on a cell, and its Seat Information (i.e. Table#, row#, column#) will paste in the <p> at the bottom.
 
 
