@@ -7,10 +7,10 @@
   
   making of indexs:
         //indexOfTableIDvsHKCECplan: Remember tables are arranged as snake biscuit(s shape): for 3x7= 21 tables, 8th table is under 7th table, not under 1st table (number of items in index = How many Tables are there)
-        
-        //indexOfrowvsHKCErow: simple, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = number of global rows)
-        
-        //indexOfcolvsHKCEcol: simple, just [1 - the last one] (number of items in index = number of global column)
+
+        //indexOfrowvsHKCErow: simple, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = how many global rows in total)
+
+        //indexOfcolvsHKCEcol: simple, just [1 - the last one] (number of items in index = how many global columns in total)
                                
                                
 */
