@@ -1,0 +1,42 @@
+1. Input a 1)Number Label(better be a 2-digit number: 01, 02, 12...) and its length with a space betweeb:
+            Label Length
+            01	63
+            02 45
+            00 348
+            02 24
+            03	78
+            04	13
+            05	49
+            06	37
+            07	1
+    If the Label is 0 or 00, cell color will be black.
+    If the Label is a odd/even number, cell color will be dark blue/light blue.
+
+
+2. Can add a new line anywhere in the list, and seat will relocate accordingly.
+
+
+3. Click on a cell, and its Seat Information (i.e. Table#, row#, column#) will paste in the <p> at the bottom.
+
+
+4. Click the [Remove Last Line] Button to delete the last line in <p>
+
+
+5. Can change the Seat Information by changing the 3 Indexes in the .js (indexOfTableIDvsHKCECplan / indexOfrowvsHKCErow / indexOfcolvsHKCEcol).
+          Guide to change the Indexes:
+            //indexOfTableIDvsHKCECplan: Remember tables are arranged as snake biscuit(s shape): for 3x7= 21 tables, 8th table is under 7th table, not under 1st table (number of items in index = How many Tables are there)
+
+            //indexOfrowvsHKCErow: simplest, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = number of global rows)
+
+            //indexOfcolvsHKCEcol: 1.Remember tables are arranged as snake biscuit(s shape) 
+                                   2. A = 1st item / B = 2nd item / C = 12th item / D = 13th item / E = 14th item / F = last item (i.e. 24th)
+
+                                   ABo  ooo  ooo  ooC
+                                   ABo  ooo  ooo  ooC
+                                   ABo  ooo  ooo  ooC
+
+                                   ooF  ooo  ooo  DEo
+                                   ooF  ooo  ooo  DEo
+                                   ooF  ooo  ooo  DEo   (number of items in index = number of global columns X how many tables in a column)
+
+                               
