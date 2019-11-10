@@ -95,7 +95,7 @@ function myFunction(){
     for(var i=0; i<labels.length; i++){
         if(labels[i] == 0){colors.push("black");}
         else{
-            if(Math.floor(labels[i] % 2) == 0){colors.push("#99bbff");}else{colors.push("#0055ff");}
+            if(Math.floor(i % 2) == 1){colors.push("#99bbff");}else{colors.push("#0055ff");}
         }
     }
     
