@@ -143,6 +143,13 @@ function arcteryx(lab,len,col) {
         //document.getElementById(a).rows[x].cells[y].style.backgroundColor =  col;
         //document.getElementById(a).rows[x].cells[y].innerHTML =  lab;
         fillCell(x,y,a,col,lab);
+        
+        if(i==cursorInstant || i == (+len+cursorInstant-1) || (x==0 && y==0) || (y==(numberOfColsInTable-1) && x==(numberOfRowsInTable-1))){
+            autoPrintCellLocation(x+1,y+1,Math.floor(i/(numberOfRowsInTable*numberOfColsInTable)),lab);
+            if(len==1){autoPrintCellLocation(x+1,y+1,Math.floor(i/(numberOfRowsInTable*numberOfColsInTable)),lab);}
+        }
+        
+        
         cursor = i+1;
     }
 }
@@ -248,7 +255,7 @@ var relCol = event.target.cellIndex +1;
         var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * numberOfColsInTable;
        }
 
-document.getElementById("printDetailOfClickedCell").innerHTML += "<br>" + event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1];
+document.getElementById("printDetailOfClickedCell").innerHTML += "<br><b>" + event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1] + "</b>";
     
 }
 
@@ -256,4 +263,19 @@ function removeLastLine() {
     var str = document.getElementById("printDetailOfClickedCell").innerHTML;
     var res = str.substr(0, str.lastIndexOf("<br>"));
     document.getElementById("printDetailOfClickedCell").innerHTML = res;
+}
+
+function autoPrintCellLocation(relRow,relCol,t,lab) { 
+
+var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*numberOfRowsInTable;
+    
+
+    if( Math.floor(t / numberOfColsInPlan) % 2 == 0){  //snake busicuit
+        var absCol = +relCol + (t%numberOfColsInPlan) * numberOfColsInTable;
+       }else{
+        var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * numberOfColsInTable;
+       }
+
+document.getElementById("printDetailOfClickedCell").innerHTML += "<br>" + lab + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1];
+    
 }
