@@ -3,7 +3,9 @@
   
   Can change how many tables in a row / column (numberOfRowsInPlan / numberOfColsInPlan)
   
-  Cannot change how many rows / columns in a table (numberOfRowsInTable / numberOfColsInTable), fixed at 11 & 12
+  Can change how many rows / columns in a table (numberOfRowsInTable / numberOfColsInTable), fixed at 11 & 12
+  
+  Html / JavaScript will freeze after all cells in all tables are used, need to F5 to start over
   
   making of indexs:
         //indexOfTableIDvsHKCECplan: Remember tables are arranged as snake biscuit(s shape): for 3x7= 21 tables, 8th table is under 7th table, not under 1st table (number of items in index = How many Tables are there)
@@ -29,10 +31,20 @@ var colors = [];
 var horizontalSpaceBetweenTabble = 370;
 var verticalSpaceBetweenTabble = 390;
 
-//var numberOfRowsInTable = 11; //not useful because table position is fixed
-//var numberOfColsInTable = 12; //not useful because table position is fixed
+var numberOfRowsInTable = 11;
+var numberOfColsInTable = 12;
 var numberOfRowsInPlan = 3;
-var numberOfColsInPlan = 7;
+var numberOfColsInPlan = 7; //will bug if total # of tables < 21, see in resetresultArea() to fix 
+
+//-------------Constant Variables of Cell Detail Printing starting from here-------------\\
+
+//constant variables
+//var relativeTableID = 0;
+//var relativeRowNumber = 0;
+//var relativeColNumber = 0;
+var indexOfTableIDvsHKCECplan = [12,13,14,15,16,17,18,28,27,26,25,24,23,22,32,33,34,35,36,37,38];
+var indexOfrowvsHKCErow = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "BB", "CC", "DD", "EE", "FF", "GG"];
+var indexOfcolvsHKCEcol = ["11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94"];
 
 function pushArrayIntoArrays(big,small1,small2){
 console.log(big);
@@ -116,19 +128,18 @@ function myFunction(){
 
 
 function arcteryx(lab,len,col) {
-    
     //fill color
     var cursorInstant = cursor;
     for(var i=cursorInstant; i<(+len+cursorInstant); i++){
         
-        x = Math.floor((i%132) / 12);
-        y = i%12;
+        x = Math.floor((i%(numberOfRowsInTable*numberOfColsInTable)) / numberOfColsInTable);
+        y = i%numberOfColsInTable;
         
         //if(Math.floor((i+1)/132)==tableid){
         //    createTable11x12();
         //}
         
-        var a = "myTable" + Math.floor(i/132);
+        var a = "myTable" + Math.floor(i/(numberOfRowsInTable*numberOfColsInTable));
         //document.getElementById(a).rows[x].cells[y].style.backgroundColor =  col;
         //document.getElementById(a).rows[x].cells[y].innerHTML =  lab;
         fillCell(x,y,a,col,lab);
@@ -168,6 +179,8 @@ function resetresultArea(){
     for(var i=0; i< numberOfRowsInPlan * numberOfColsInPlan; i++){
         createTable11x12();
     }
+    
+    //draw red border on myTable? for cautions. Might cause bug if myTable total number is smaller than 21
     document.getElementById("myTable0").style.border = "5px solid red";
     document.getElementById("myTable1").style.border = "5px solid red";
     document.getElementById("myTable2").style.border = "5px solid red";
@@ -202,9 +215,9 @@ function createTable11x12() {
   console.log("Table created, id = " + a);
 
 //number of row & col
-for (var i=0; i<11; i++){
+for (var i=0; i<numberOfRowsInTable; i++){
 	var row = x.insertRow(-1);
-	for (var j=0; j<12;j++){
+	for (var j=0; j<numberOfColsInTable;j++){
         var cell1 = row.insertCell(-1);
         cell1.innerHTML = tableid;
     }
@@ -219,13 +232,6 @@ for (var i=0; i<11; i++){
 //-------------Functions of Cell Detail Printing starting from here-------------\\
 //-------------Functions of Cell Detail Printing starting from here-------------\\
 
-//constant variables
-//var relativeTableID = 0;
-//var relativeRowNumber = 0;
-//var relativeColNumber = 0;
-var indexOfTableIDvsHKCECplan = [12,13,14,15,16,17,18,28,27,26,25,24,23,22,32,33,34,35,36,37,38];
-var indexOfrowvsHKCErow = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "BB", "CC", "DD", "EE", "FF", "GG"];
-var indexOfcolvsHKCEcol = ["11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94"];
 
 
 
@@ -233,13 +239,13 @@ function printCellLocation(event) {
 var t = event.target.parentNode.parentNode.parentNode.id.replace("myTable", ""); //t = TableId(0-20)
     
 var relRow = event.target.parentNode.rowIndex+1;
-var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*11;
+var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*numberOfRowsInTable;
     
 var relCol = event.target.cellIndex +1;
-    if( Math.floor(t / numberOfColsInPlan) % (numberOfRowsInPlan-1) == 0){
-        var absCol = +relCol + (t%numberOfColsInPlan) * 12;
+    if( Math.floor(t / numberOfColsInPlan) % 2 == 0){  //snake busicuit
+        var absCol = +relCol + (t%numberOfColsInPlan) * numberOfColsInTable;
        }else{
-        var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * 12;
+        var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * numberOfColsInTable;
        }
 
 document.getElementById("printDetailOfClickedCell").innerHTML += "<br>" + event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1];
