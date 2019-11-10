@@ -10,7 +10,7 @@
             Hi	37
             07	1
     If the Label is 0 or 00, cell color will be black.
-    If the Label is a odd/even number, cell color will be dark blue/light blue.
+    For the odd/even-th items in the list, cell color will be dark blue/light blue.
 
 
 2. Can add a new line anywhere in the list, and seat will relocate accordingly.
