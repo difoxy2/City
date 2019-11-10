@@ -1,13 +1,13 @@
-1. Input a 1)Number Label(better be a 2-digit number: 01, 02, 12...) and its length with a space betweeb:
+1. Input a 1)Label(better be a 2-digit long for asethetic reason) and its length with a space betweeb:
             Label Length
             01	63
             02 45
             00 348
             02 24
-            03	78
+            B	78
             04	13
             05	49
-            06	37
+            Hi	37
             07	1
     If the Label is 0 or 00, cell color will be black.
     If the Label is a odd/even number, cell color will be dark blue/light blue.
