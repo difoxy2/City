@@ -198,6 +198,7 @@ function createTable11x12() {
   var a = "myTable" + tableid;
   x.setAttribute("id", a);
   x.setAttribute("onclick", "printCellLocation(event)");
+  x.setAttribute("style", "border: 5px solid black;");
   console.log("Table created, id = " + a);
 
 //number of row & col
