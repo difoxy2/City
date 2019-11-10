@@ -7,9 +7,7 @@
   
   making of indexs:
         //indexOfTableIDvsHKCECplan: Remember tables are arranged as snake biscuit(s shape): for 3x7= 21 tables, 8th table is under 7th table, not under 1st table (number of items in index = How many Tables are there)
-
         //indexOfrowvsHKCErow: simple, just [A, ... ,Z,AA, ... ,ZZ, ... ,the last one] (number of items in index = how many global rows in total)
-
         //indexOfcolvsHKCEcol: simple, just [1 - the last one] (number of items in index = how many global columns in total)
                                
                                
@@ -150,60 +148,67 @@ function fillCell(x,y,w,a,b) {
 function resetresultArea(){
     document.getElementById("resultArea").innerHTML = "";
     tableid = "0";
+    
+    //create a container (i.e. table with wXc = numberOfRowsInPlan X numberOfColsInPlan)
+    var x = document.createElement("TABLE");
+    x.setAttribute("id", "containerUNDERresultAreaFORmyTables"); //id
+    
+    //Append above container to resultArea
+    document.getElementById("resultArea").appendChild(x);
+    
+        //inserting table Rows & Columns
+    for (var i=0; i < numberOfRowsInPlan; i++){
+	    var row = x.insertRow(-1);
+        for (var j=0; j < numberOfColsInPlan;j++){
+            var cell1 = row.insertCell(-1);    
+        }
+    }
+        
+        //runs createTable11x12 for 21 times
     for(var i=0; i< numberOfRowsInPlan * numberOfColsInPlan; i++){
         createTable11x12();
     }
+    document.getElementById("myTable0").style.border = "5px solid red";
+    document.getElementById("myTable1").style.border = "5px solid red";
+    document.getElementById("myTable2").style.border = "5px solid red";
+    document.getElementById("myTable3").style.border = "5px solid red";
+    document.getElementById("myTable6").style.border = "5px solid red";
+    document.getElementById("myTable14").style.border = "5px solid red";
+    document.getElementById("myTable20").style.border = "5px solid red";
     
-    document.getElementById("myTable0").style.border = "3px solid red";
-    document.getElementById("myTable1").style.border = "3px solid red";
-    document.getElementById("myTable2").style.border = "3px solid red";
-    document.getElementById("myTable3").style.border = "3px solid red";
-    document.getElementById("myTable6").style.border = "3px solid red";
-    document.getElementById("myTable14").style.border = "3px solid red";
-    document.getElementById("myTable20").style.border = "3px solid red";
-        
-
+        //appending myTables to container cells:
+    for (var i=0; i < numberOfRowsInPlan; i++){
+        for (var j=0; j < numberOfColsInPlan;j++){
+            if(i%2==1){ //case of mirroring the cells in a row
+               //document.getElementById("containerUNDERresultAreaFORmyTables").rows[i].cells[j].innerHTML = i*numberOfColsInPlan + j*-1+numberOfColsInPlan -1; //the resulting number (mirrored / flipped)
+               document.getElementById("containerUNDERresultAreaFORmyTables").rows[i].cells[j].appendChild(document.getElementById("myTable" + (i*numberOfColsInPlan + j*-1+numberOfColsInPlan -1)));
+               }else{
+                //document.getElementById("containerUNDERresultAreaFORmyTables").rows[i].cells[j].innerHTML = i*numberOfColsInPlan+j; //the reuslting number (normal)
+                document.getElementById("containerUNDERresultAreaFORmyTables").rows[i].cells[j].appendChild(document.getElementById("myTable" + (i*numberOfColsInPlan+j)));
+                    }
+            
+        }
+    }    
 }
 
 function createTable11x12() {
-  document.getElementById("resultArea").style.width = 371*numberOfColsInPlan + "px";
-  document.getElementById("resultArea").style.height = 393*numberOfRowsInPlan + "px";  
-    
   var x = document.createElement("TABLE");
+    
 //id
   var a = "myTable" + tableid;
   x.setAttribute("id", a);
   x.setAttribute("onclick", "printCellLocation(event)");
   console.log("Table created, id = " + a);
-    
-//position
-  //vertical
-      var vspace = (Math.floor(tableid / numberOfColsInPlan)) * verticalSpaceBetweenTabble;
-    
-  //horizontal
-    if( Math.floor(tableid / numberOfColsInPlan) % (numberOfRowsInPlan-1) == 0){
-        var hspace = (tableid % numberOfColsInPlan) * horizontalSpaceBetweenTabble;
-        var b = "position: absolute; left: " + hspace + "px;top: "+ vspace + "px;";
-       }else{
-        var hspace = (tableid % numberOfColsInPlan) * horizontalSpaceBetweenTabble +11;
-        var b = "position: absolute; right: " + hspace + "px;top: "+ vspace + "px;";
-       }
-
-      x.setAttribute("style", b);
-
 
 //number of row & col
-  document.getElementById("resultArea").appendChild(x);
-
-for (i=0; i<11; i++){
+for (var i=0; i<11; i++){
 	var row = x.insertRow(-1);
-	for (j=0; j<12;j++){
+	for (var j=0; j<12;j++){
         var cell1 = row.insertCell(-1);
-        var a = "00";
-        cell1.innerHTML = a;
+        cell1.innerHTML = tableid;
     }
 }
-    
+    document.getElementById("resultArea").appendChild(x);
     tableid++;
 }
 

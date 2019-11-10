@@ -9,29 +9,37 @@ table, td {
 </head>
 <body>
 
-<div id="console" style="border-style: dashed; display: inline-block; width: auto;">
-<textarea id="lablen" rows="39" cols="10"></textarea><br>
-
+    
+<table id="containerUnder<body>FORconsoleANDresultArea">
+  <tr>
+    <td>
+        console
+        <div id="console" style="border-style: dashed;">
+        <textarea id="lablen" rows="39" cols="10"></textarea>
+        <br><br>
+        <button onclick="myFunction()">Try it</button> <br>
+        </div> 
+    </td>
+    <td>
+        resultArea
+        <div id="resultArea" style="border-style: dashed;"></div>
+    </td>
+</table>
+    
 <br>
-
-<button onclick="myFunction()">Try it</button> <br>
-
-</div> 
+<br>
+<br>
+        
+<button onclick="removeLastLine();">Remove Last Line</button>    
+    
+<p id="printDetailOfClickedCell">Information of clicked cells: Label, Table ID (0-?), row#(1-11), column#(1-12)</p> 
     
 
     
-<div id="resultArea" style="border-style: dashed; display: inline-block; width: 2600px; height: 1180px; position: absolute; top: 10px;"></div>
-       
-    <br>
-    <br>
-    <br>
-    
-    <button onclick="removeLastLine();">Remove Last Line</button>
-    <p id="printDetailOfClickedCell">Information of clicked cells: Label, Table ID (0-?), row#(1-11), column#(1-12)</p>
+
     
 
 <script type = "text/javascript" src = "jsver2.js" >
-
 </script>
 </body>
 </html>
