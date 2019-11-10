@@ -1,16 +1,16 @@
-1. Input a 1)Label(better be a 2-digit long for asethetic reason) and its length with a space betweeb:
+1. Input a 1)Number Label(better be a 2-digit number: 01, 02, 12...) and its length with a space betweeb:
             Label Length
             01	63
             02 45
             00 348
             02 24
-            B	78
+            03	78
             04	13
             05	49
-            Hi	37
+            06	37
             07	1
     If the Label is 0 or 00, cell color will be black.
-    For the odd/even-th items in the list, cell color will be dark blue/light blue.
+    If the Label is a odd/even number, cell color will be dark blue/light blue.
 
 
 2. Can add a new line anywhere in the list, and seat will relocate accordingly.
