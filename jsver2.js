@@ -3,7 +3,7 @@
   
   Can change how many tables in a row / column (numberOfRowsInPlan / numberOfColsInPlan)
   
-  Can change how many rows / columns in a table (numberOfRowsInTable / numberOfColsInTable), fixed at 11 & 12
+  Can change how many rows / columns in a table (numberOfRowsInTable / numberOfColsInTable)
   
   Html / JavaScript will freeze after all cells in all tables are used, need to F5 to start over
   
