@@ -270,7 +270,6 @@ function removeLastLine() {
     }
     
     str = str.substr(0,str.lastIndexOf("<br>")+4);
-        console.log(str);
     document.getElementById("printDetailOfClickedCell").innerHTML = str;
 }
 
