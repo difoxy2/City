@@ -255,9 +255,12 @@ var relCol = event.target.cellIndex +1;
        }else{
         var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * numberOfColsInTable;
        }
-
-document.getElementById("printDetailOfClickedCell").innerHTML += "<br><b>" + event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1] + "</b>";
     
+var spaceorbr;
+var str = document.getElementById("printDetailOfClickedCell").innerHTML;    
+if(str.substr(str.length-1,str.length) == " "){spaceorbr = "</b><br>";}else{spaceorbr = "</b> ";}
+    
+document.getElementById("printDetailOfClickedCell").innerHTML += "<b>" +event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1] + spaceorbr;    
 }
 
 function removeLastLine() {
@@ -278,6 +281,10 @@ var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*numberOfRowsInTable;
         var absCol = +relCol + ((t%numberOfColsInPlan) * -1 + (numberOfColsInPlan-1)) * numberOfColsInTable;
        }
 
-document.getElementById("printDetailOfClickedCell").innerHTML += "<br>" + lab + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1];
+var spaceorbr;
+var str = document.getElementById("printDetailOfClickedCell").innerHTML;    
+if(str.substr(str.length-1,str.length) == " "){spaceorbr = "<br>";}else{spaceorbr = " ";}
+    
+document.getElementById("printDetailOfClickedCell").innerHTML += +lab + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1] + spaceorbr;
     
 }
