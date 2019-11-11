@@ -257,7 +257,7 @@ var relCol = event.target.cellIndex +1;
        }
     
 var spaceorbr;
-var str = document.getElementById("printDetailOfClickedCell").innerHTML;    
+var str = document.getElementById("printDetailOfClickedCell").innerHTML;
 if(str.substr(str.length-1,str.length) == " "){spaceorbr = "</b><br>";}else{spaceorbr = "</b> ";}
     
 document.getElementById("printDetailOfClickedCell").innerHTML += "<b>" +event.target.innerHTML + " " + indexOfTableIDvsHKCECplan[t] + " " + indexOfrowvsHKCErow[absRow-1] + " " + indexOfcolvsHKCEcol[absCol-1] + spaceorbr;    
@@ -265,9 +265,13 @@ document.getElementById("printDetailOfClickedCell").innerHTML += "<b>" +event.ta
 
 function removeLastLine() {
     var str = document.getElementById("printDetailOfClickedCell").innerHTML;
-    var res = str.substr(0, 3 + str.lastIndexOf("<br>"));
-    document.getElementById("printDetailOfClickedCell").innerHTML = res;
-    console.log(document.getElementById("printDetailOfClickedCell").innerHTML);
+    if(str.substr(str.length-4,str.length-1) == "<br>"){
+        str = str.substr(0,str.length-4);
+    }
+    
+    str = str.substr(0,str.lastIndexOf("<br>")+4);
+        console.log(str);
+    document.getElementById("printDetailOfClickedCell").innerHTML = str;
 }
 
 function autoPrintCellLocation(relRow,relCol,t,lab) { 
