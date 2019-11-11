@@ -164,6 +164,7 @@ function fillCell(x,y,w,a,b) {
 
 
 function resetresultArea(){
+    document.getElementById("printDetailOfClickedCell").innerHTML = "";
     document.getElementById("resultArea").innerHTML = "";
     tableid = "0";
     
@@ -267,8 +268,9 @@ function removeLastLine() {
 
 function autoPrintCellLocation(relRow,relCol,t,lab) { 
 
-var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*numberOfRowsInTable;
     
+var absRow = +relRow + Math.floor(t/numberOfColsInPlan)*numberOfRowsInTable;
+
 
     if( Math.floor(t / numberOfColsInPlan) % 2 == 0){  //snake busicuit
         var absCol = +relCol + (t%numberOfColsInPlan) * numberOfColsInTable;
