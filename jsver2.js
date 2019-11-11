@@ -265,8 +265,9 @@ document.getElementById("printDetailOfClickedCell").innerHTML += "<b>" +event.ta
 
 function removeLastLine() {
     var str = document.getElementById("printDetailOfClickedCell").innerHTML;
-    var res = str.substr(0, str.lastIndexOf("<br>"));
+    var res = str.substr(0, 3 + str.lastIndexOf("<br>"));
     document.getElementById("printDetailOfClickedCell").innerHTML = res;
+    console.log(document.getElementById("printDetailOfClickedCell").innerHTML);
 }
 
 function autoPrintCellLocation(relRow,relCol,t,lab) { 
