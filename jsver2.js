@@ -164,7 +164,7 @@ function fillCell(x,y,w,a,b) {
 
 
 function resetresultArea(){
-    document.getElementById("printDetailOfClickedCell").innerHTML = "";
+    document.getElementById("printDetailOfClickedCell").innerHTML = "<br>";
     document.getElementById("resultArea").innerHTML = "";
     tableid = "0";
     
@@ -265,11 +265,13 @@ document.getElementById("printDetailOfClickedCell").innerHTML += "<b>" +event.ta
 
 function removeLastLine() {
     var str = document.getElementById("printDetailOfClickedCell").innerHTML;
+        console.log(str);
     if(str.substr(str.length-4,str.length-1) == "<br>"){
         str = str.substr(0,str.length-4);
     }
     
     str = str.substr(0,str.lastIndexOf("<br>")+4);
+        console.log(str);
     document.getElementById("printDetailOfClickedCell").innerHTML = str;
 }
 
